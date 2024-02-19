@@ -1,0 +1,119 @@
+<h1>Student Form</h1>
+
+
+    <table border="1">
+        <thead>
+    <tr>
+        <th>Name</th>
+        <td><input type="text"  id ="name"  placeholder="Your Name" ></td>
+    </tr>
+</thead>
+<thead>
+    <tr>
+        <th>Age</th>
+        <td><input type="text" id="age" placeholder="Your Age"></td>
+    </tr>
+</thead>
+<thead>
+    <tr>
+        <th >Gender</th>
+        <!-- <td><input type="radio" id="gender" name="gendertype" value="male" >
+            <label for="gender">Male</label>
+            <input type="radio" id="gender" name="gendertype" value="female" >
+            <label for="Female">Female</label>
+            <p id ="result"></p> -->
+            <td>
+                <input type="radio" name="gender" value="male" id="male" >Male
+                <input type="radio" name="gender" value="Female" id="female" >FeMale
+                
+            </td>
+
+    </tr>
+</thead>
+<thead>
+    <tr>
+        <th >Course</th>
+        <td>
+        <select id ="course">
+            <option>Javascript</option>
+            <option>html</option>
+            <option>css</option>
+        </select></td>
+    </tr>
+</thead>
+<thead>
+    <tr>
+        <th >Email</th>
+        <td><input type="email" id ="email" placeholder="Your Email"></td>
+    </tr>
+</thead>
+    <tr >
+        <td colspan="2" >
+        <button id="save" onclick="savefunc()" style="width: 220px; color: black; background-color: green; text-align: center;">Save</button>
+    </td>
+    </tr>
+    </table>
+
+
+
+    <table id="show" border="1">
+        <thead>
+<tr>
+    <th id="Name1">Name</th>
+<th id="age1">Age</th>
+<th id="gender1">gender</th>
+<th id="course1">course</th>
+<th id="Email">Email</th>
+<th id="action">action</th>
+ </thead>
+ <tbody>
+ </tbody>
+    </table>
+
+    <script>
+     
+     var namebox = []
+     var agebox =[]
+     var genderbox=[]
+     var coursebox=[]
+     var emailbox =[]
+       var n =1;
+       var x=0;
+       function togetusergender(){
+            const male = document.getElementById("male").checked
+            const female = document.getElementById("female").checked
+            return male ? 'male' : female ? 'female' : ''
+            }
+        function savefunc(){
+            var addrow = document.getElementById("show")
+            var newrow = addrow.insertRow(n)
+           
+            namebox[x] = document.getElementById("name").value
+            agebox[x] = document.getElementById("age").value 
+            genderbox[x]= togetusergender()
+            coursebox[x] = document.getElementById("course").value
+            emailbox[x] = document.getElementById("email").value
+          
+            var cel1= newrow.insertCell(0)
+            var cel2 =newrow.insertCell(1)
+            var cel3 = newrow.insertCell(2)
+            var cel4= newrow.insertCell(3)
+            var cel5=newrow.insertCell(4)
+            var cel6=newrow.insertCell(5)
+
+            cel1.innerHTML = namebox[x]
+            cel2.innerHTML =agebox[x]
+            cel3.innerHTML = genderbox[x]
+            cel4.innerHTML = coursebox[x]
+            cel5.innerHTML= emailbox[x]
+            cel6.innerHTML = '<button id ="btndel" onclick ="deleteData(this)">Delete</button>'
+            n++;
+            x++;
+        }
+
+        function deleteData(button){
+            let row = button.parentNode.parentNode; 
+          row.parentNode.removeChild(row); 
+        }
+        
+    </script>
